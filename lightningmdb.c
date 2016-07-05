@@ -290,10 +290,10 @@ static const lua_reg_t env_methods[] = {
 void env_register(lua_State* L) {
   luaL_newmetatable(L,ENV);
   lua_set_funcs(L,ENV,env_methods);
-  lua_settable(L,-1);
 
   luaL_getmetatable(L,ENV);
   lua_setfield(L,-1,"__index");
+  lua_pop(L, 1);
 }
 
 /* cursor */
@@ -404,10 +404,10 @@ void cursor_register(lua_State* L) {
 
   luaL_newmetatable(L,CURSOR);
   lua_set_funcs(L,CURSOR,cursor_methods);
-  lua_settable(L,-1);
 
   luaL_getmetatable(L,CURSOR);
   lua_setfield(L,-1,"__index");
+  lua_pop(L, 1);
 }
 
 
@@ -585,12 +585,10 @@ static const lua_reg_t txn_methods[] = {
 void txn_register(lua_State* L) {
   luaL_newmetatable(L,TXN);
   lua_set_funcs(L,TXN,txn_methods);
-  lua_settable(L,-1);
 
   luaL_getmetatable(L,TXN);
   lua_setfield(L,-1,"__index");
-
-
+  lua_pop(L, 1);
 }
 
 /* globals */
